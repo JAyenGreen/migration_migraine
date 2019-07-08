@@ -1,0 +1,13 @@
+videojs:
+  version: 1.x
+  css:
+    theme:
+      videojs/video-js.css: {minified: false}
+  js:
+    videojs/video.js: {minified: false, preprocess: false}
+videojs-youtube-master:
+  version: 1.x
+  js:
+    videojs-youtube-master/dist/Youtube.js: {minified: false, preprocess: false}
+  dependencies:
+    - core/jquery

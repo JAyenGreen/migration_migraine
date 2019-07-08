@@ -1,0 +1,5 @@
+name: 'Split Body'
+type: module
+description: 'Helper to handle populating the body/summary field from a separate field than the other body components.'
+core: 8.x
+package: 'Migration Migraine'

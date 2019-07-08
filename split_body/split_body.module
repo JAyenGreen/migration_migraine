@@ -1,0 +1,81 @@
+<?php
+
+/**
+ * @file
+ * Contains split_body.module.
+ */
+
+use Drupal\Core\Routing\RouteMatchInterface;
+use Drupal\migrate\Row;
+/**
+ * Implements hook_help().
+ */
+function split_body_help($route_name, RouteMatchInterface $route_match) {
+  switch ($route_name) {
+    // Main module help for the split_body module.
+    case 'help.page.split_body':
+      $output = '';
+      $output .= '<h3>' . t('About') . '</h3>';
+      $output .= '<p>' . t('Helper to handle populating the body/summary field from a separate field than the other body components.') . '</p>';
+      return $output;
+
+    default:
+  }
+}
+function split_body_migrate_prepare_row(Row $row, \Drupal\migrate\Plugin\MigrateSourceInterface $source, \Drupal\migrate\Plugin\MigrationInterface $migration)
+{
+    // Identify the migrations to which attention should be paid
+    $migrations = [
+        'upgrade_d7_node_split_body',
+        'upgrade_d7_node_revision_split_body',
+    ];
+    if (in_array($migration->id(), $migrations)) {
+        $body = $row->getSourceProperty('body');
+        $summary = $row->getSourceProperty('field_summary');
+        $entry = 0;
+        // Processing will occur regardless of the body text status if there is summary text
+        if (!is_array($summary) || !isset($summary[0]) || !is_array($summary[0]) || empty($summary[0]['value']))
+            return;
+        // There is summary text. Now handle all reasonable body text statuses
+        // Is it an array
+        if (is_array($body)) {
+            // does the array have an entry
+            if (sizeof($body) > 0) {
+                // get the entry
+                $entry = min(array_keys($body));
+                // is the entry an array
+                if (is_array($body[$entry])) {
+                    // is there text
+                    if (!empty($body[$entry]['value'])) {
+                        // nothing to do ... there is already body text. $entry will point to the place for the summary
+                    }
+                } else {
+                    // the existing entry is not a valid body entry. create one at [0]
+                    create_body($body, $entry);
+                }
+            } else {
+                // the body is an array but has no entries create one at 0
+                create_body($body, $entry);
+            }
+
+        } else {
+            // body isn't an array. create an entry at 0 while making it an array
+            create_body($body, $entry);
+        }
+
+        $body[$entry]['summary'] = $summary[0]['value'];
+        $row->setSourceProperty('body', $body);
+    }
+}
+
+/**
+ * @param $body
+ * @param $entry
+ */
+function create_body(&$body, $entry) {
+    $body[0] = [
+        'value'   => ' ', // the space is intended
+        'format'  => 'basic_html',
+        'summary' => '',
+    ];
+}

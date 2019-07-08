@@ -1,0 +1,4 @@
+migration_migraine.admin_config_migration_migraine:
+  title: 'Migration Migraine'
+  route_name: 'migration_migraine.settings'
+  parent: system.admin_config

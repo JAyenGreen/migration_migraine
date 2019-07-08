@@ -1,0 +1,6 @@
+name: 'Location2Address'
+type: module
+description: 'Plugin to migrate D7 location field data to a D7 address field'
+core: 8.x
+package: 'Migration Migraine'
+version: 8.x-1.0

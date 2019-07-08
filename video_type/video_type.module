@@ -1,0 +1,33 @@
+<?php
+
+
+use Drupal\file\Entity\File;
+/**
+ * Implements hook_theme().
+ */
+function video_type_theme($existing, $type, $theme, $path) {
+    $theme = [
+        'video_type' => [
+            'variables' => [
+                'video_title' => NULL,
+                'video_description' => NULL,
+                'video_length' => NULL,
+                'youtube_url' => NULL,
+                'caption_file' => NULL,
+                'delta' => NULL,
+            ],
+        ],
+    ];
+
+    return $theme;
+}
+
+function video_type_preprocess_video_type(&$variables)
+{
+    if ($variables['caption_file'] !== NULL) {
+        $fid = $variables['caption_file'];
+        $uri = File::load($fid)->getFileUri();
+        $captions_path = file_url_transform_relative(file_create_url($uri));
+        $variables['caption_file'] = $captions_path;
+    }
+}

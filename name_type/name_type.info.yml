@@ -1,0 +1,10 @@
+name: 'Name Type'
+description: 'Provides Name field type widget for use in a node bundle.'
+type: module
+core: 8.x
+dependencies:
+  - field
+  - node
+  - text
+version: 8.x-1.0
+package: Migration Migraine

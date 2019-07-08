@@ -1,0 +1,13 @@
+name: 'Video Type'
+description: 'Provides a Video field type for use in any node bundle.'
+type: module
+core: 8.x
+dependencies:
+  - field
+  - file
+  - image
+  - node
+  - path
+  - text
+version: 8.x-1.0
+package: Migration Migraine

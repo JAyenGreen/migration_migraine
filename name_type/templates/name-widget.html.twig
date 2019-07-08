@@ -1,0 +1,37 @@
+{{ attach_library('name_type/name-widget') }}
+<div class="contact">
+    <h2>{{ name_full }}</h2>
+    {% if name_prefix is not empty %}
+        <div class="full">
+            <span class="name">prefix:&nbsp;</span>{{ name_prefix }}
+        </div>
+    {% endif %}
+    {% if name_first is not empty %}
+        <div class="first">
+            <span class="name">first:&nbsp;</span>{{ name_first }}
+        </div>
+    {% endif %}
+    {% if name_middle is not empty %}
+        <div class="middle">
+            <span class="name">middle:&nbsp;</span>{{ name_middle }}
+        </div>
+    {% endif %}
+    <div class="last">
+        <span class="name">last:&nbsp;</span>{{ name_last }}
+    </div>
+    {% if name_maternal_last is not empty %}
+        <div class="maternal">
+            <span class="name">maternal last:&nbsp;</span>{{ name_maternal_last }}
+        </div>
+    {% endif %}
+    {% if name_suffix is not empty %}
+        <div class="suffix">
+            <span class="name">suffix:&nbsp;</span>{{ name_suffix }}
+        </div>
+    {% endif %}
+    {% if name_preferred is not empty %}
+        <div class="preferred">
+            <span class="name">preferred:&nbsp;</span>{{ name_preferred }}
+        </div>
+    {% endif %}
+</div>

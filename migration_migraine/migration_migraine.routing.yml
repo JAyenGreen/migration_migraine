@@ -1,0 +1,6 @@
+migration_migraine.settings:
+  path: '/admin/config/migration_migraine'
+  defaults:
+    _title: 'Migration Migraine'
+  requirements:
+    _permission: 'administer site configuration'

@@ -1,0 +1,25 @@
+<?php
+
+
+use Drupal\file\Entity\File;
+/**
+ * Implements hook_theme().
+ */
+function name_type_theme($existing, $type, $theme, $path) {
+    $theme = [
+       'name_widget' => [
+            'variables' => [
+                'name_prefix'       => NULL,
+                'name_first'        => NULL,
+                'name_middle'       => NULL,
+                'name_last'         => NULL,
+                'name_maternal_last'=> NULL,
+                'name_suffix'       => NULL,
+                'name_full'         => NULL,
+                'name_preferred'    => NULL,
+            ],
+        ],
+    ];
+
+    return $theme;
+}

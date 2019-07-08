@@ -1,0 +1,6 @@
+name: 'Migration Migraine'
+type: module
+core: 8.x
+package: 'Migration Migraine'
+version: 8.x-1.0
+
